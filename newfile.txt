@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Galaxia de palabras</title>
+<style>
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.word {
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  animation: orbit linear infinite;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+<div class="container" id="container">
+  <div class="center">Mi mundo 🌌</div>
+</div>
+
+<script>
+const words = [
+"Mi amor", "Mi cielo", "Te amo", "Eres todo",
+"Mi vida", "Mi razón", "Mi luz", "Mi estrella",
+"Contigo", "Siempre", "Abrazo", "Cariño",
+"Mi destino", "Felicidad", "Sueños", "Inspiración"
+];
+
+const container = document.getElementById("container");
+
+words.forEach((word, i) => {
+  let span = document.createElement("span");
+  span.className = "word";
+  span.innerText = word;
+
+  let angle = (360 / words.length) * i;
+
+  span.style.top = "50%";
+  span.style.left = "50%";
+  span.style.transform = `rotate(${angle}deg) translateX(150px)`;
+
+  span.style.animationDuration = (10 + Math.random() * 10) + "s";
+
+  container.appendChild(span);
+});
+</script>
+
+</body>
+</html>
